@@ -31,6 +31,7 @@ A few key points:
 
 - The UI must handle pagination somehow (infinite-scroll or manual pagination)
 - You can build your utilities
+- You must use [`pnpm`][pnpm] to manage dependencies, feel free to reconfigure the monorepo (according to the turbo docs) if you want to use yarn.
 
 #### Your code must have the following scripts:
 
@@ -76,8 +77,8 @@ I want to give you some context of our internal structure:
 - We have a custom next middleware to check authentication
 
 - Vitest - Testing
-- `@testing-library` - UI tests
 - Playwright - E2E Tests
+- `@testing-library` - UI tests
 - `fp-ts` / `io-ts` + `axios` - API SDK and data contracts.
 
 [tsdoc]: https://tsdoc.org
