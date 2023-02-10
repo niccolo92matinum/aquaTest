@@ -71,8 +71,8 @@ The score will depend on the following evaluation critera (not sorted in any par
 
 ## 📬 Delivery
 
-Fork this repo into a private one in your profile.
-Add [@rawnly](https://github.com/rawnly) as repo member once you're done.
+- Create a repo with this one as template.
+- Add [@rawnly](https://github.com/rawnly) as repo member once you're done.
 
 #### About our stack @ Aquacloud:
 
