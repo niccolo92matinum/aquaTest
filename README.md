@@ -10,11 +10,11 @@ You **don't have a time limit**, however the delivery time will be somehow kept 
 
 ## Assignment
 
-Build a web app that displays a list of jokes using the given API endpoint.
+Build a web app that displays a list of jokes using the given API endpoint (`/api/jokes`).
 
-It should be built with **Next.js**, **Typescript** and **Tailwindcss**
+It must be done with [**Next.js**](https://nextjs.org), **Typescript** and [**Tailwindcss**](https://tailwindcss.com)
 
-### Project Structure
+### 🗂 Project Structure
 
 This repository is a monorepo built with [`turborepo`][turborepo].
 It contains 2 projects:
@@ -22,7 +22,7 @@ It contains 2 projects:
 - `@aquacloud/internal` which is used internally to fetch and paginate the search endpoint of the chuck-norris api.
 - `apps/next-app` which is the app that you will build
 
-#### Requirements
+#### 🔞 Requirements
 
 You have to build a page to display the data returned from the `/api/jokes` endpoint inside the next-app.
 Please do not edit the endpoint or the code inside `packages/internal`.
@@ -40,14 +40,14 @@ A few key points:
 - `start` - to start the app
 - `build` - to build the app
 
-### Definition of done
+### ✅ Definition of done
 
 - All the scripts are working without errors
 - The web app is working without errors
 - Unit tests are passing
 - Usage of modern hooks is mandatory (no class components)
 
-### Bonus Points
+### 👉 Bonus Points
 
 - Your code follows a mobile first approach
 - The utils are documented according to the [`TSDoc`][tsdoc] standard
@@ -58,7 +58,7 @@ A few key points:
 - Stale while revalidate approach for data-loaders
 - Your app supports dark mode
 
-### Score
+### 👉 Score
 
 The score will depend on the following evaluation critera (not sorted in any particular way):
 
@@ -68,6 +68,11 @@ The score will depend on the following evaluation critera (not sorted in any par
 - Knowledge of React and its best practices
 - Performance
 - Testing
+
+## 📬 Delivery
+
+Fork this repo into a private one in your profile.
+Add [@rawnly](https://github.com/rawnly) as repo member once you're done.
 
 #### About our stack @ Aquacloud:
 
@@ -83,3 +88,4 @@ I want to give you some context of our internal structure:
 
 [tsdoc]: https://tsdoc.org
 [turborepo]: https://turbo.build/repo
+[pnpm]: https://pnpm.io
