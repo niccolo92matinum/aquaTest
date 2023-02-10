@@ -6,20 +6,20 @@ We're glad to inform you that you have been selected for the next recruiting ste
 You can find the instructions below.
 Please do not hesitate to contact us if something is not clear enough.
 
-You **don't have a time limit"**, however the delivery time will be somehow kept into consideration.
+You **don't have a time limit**, however the delivery time will be somehow kept into consideration.
 
 ## Assignment
 
 Build a web app that displays a list of jokes using the given API endpoint.
 
-It should be built with **Next.js**, **Typescript** and **Tailwind**
+It should be built with **Next.js**, **Typescript** and **Tailwindcss**
 
-#### Project Structure
+### Project Structure
 
 This repository is a monorepo built with [`turborepo`][turborepo].
-It contains 2 projects,
+It contains 2 projects:
 
-- `@aquacloud/chucknorris` which is used internally to fetch and paginate the search endpoint of the chuck-norris api.
+- `@aquacloud/internal` which is used internally to fetch and paginate the search endpoint of the chuck-norris api.
 - `apps/next-app` which is the app that you will build
 
 #### Requirements
@@ -59,7 +59,7 @@ A few key points:
 
 ### Score
 
-The score will depend on the following evaluation critera (not sorted in any way):
+The score will depend on the following evaluation critera (not sorted in any particular way):
 
 - Architecture
 - Comments / Documentation
