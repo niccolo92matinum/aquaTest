@@ -8,6 +8,9 @@
         "^build"
       ]
     },
+    "start": {
+      "cache": false
+    },
     "dev": {
       "cache": false
     },
