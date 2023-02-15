@@ -9,6 +9,10 @@
     "build": "turbo build",
     "test": "turbo test"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "license": "ISC",
   "dependencies": {
     "turbo": "^1.7.4",
