@@ -1,86 +1,87 @@
-import { NextPage } from "next";
-import {useSWRInfinite} from 'swr';
-import axios from 'axios'
-import {useEffect , useState} from "react";
+import { NextPage } from 'next';
 
+import { useEffect, useState } from 'react';
+
+import Card from '../components/Card';
 
 const Page: NextPage = (_) => {
+    const [data, setData] = useState([]);
+    const [scroll, setScroll] = useState(0);
 
-  const[data, setData] = useState([])
-  const[scroll, setScroll] = useState(0)
+    let totalPages;
 
-let totalPages 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(`api/jokes?page=${scroll}`);
+                const data = await res.json();
 
-  useEffect(()=>{
-    const fetchData = async () =>{
-      try{
-        const res = await fetch(`api/jokes?page=${scroll}`)
-        const data = await res.json()
-        console.log(scroll,'cazzo')
-        totalPages = data.totalPages
-        setData(pre => [...pre,...data.data])
-        
-      } catch (error){
-        console.log(error)
-      }
+                totalPages = data.totalPages;
+                setData((pre) => [...pre, ...data.data]);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [scroll]);
 
-    }
-    fetchData()
+    useEffect(() => {
+        const handleScroll = (e) => {
+         
+            const scrollHeight = e.target.documentElement.scrollHeight;
+            const currentHeight =
+        e.target.documentElement.scrollTop + window.innerHeight;
 
-  }, [scroll])
+            if (currentHeight + 1 >= scrollHeight) {
+                scroll < totalPages ? setScroll(scroll + 1) : setScroll(0);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
 
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [scroll]);
 
-useEffect(()=>{
-
-  const handleScroll = (e) =>{
-    const element = document.getElementById("mainDiv");
-    const scrollHeight = e.target.documentElement.scrollHeight
-    const currentHeight = e.target.documentElement.scrollTop + window.innerHeight
-  
-    if(currentHeight + 1 >= scrollHeight){
-      scroll < totalPages ? setScroll(scroll + 1) :  setScroll(0)
+    return (
      
-    }
-  }
-  window.addEventListener('scroll', handleScroll)
-
-  return () => window.removeEventListener('scroll', handleScroll)
-
-},[scroll])
-
-
-
-
-
-  return(
-    <div id='mainDiv'>
-      {data && data.map(post =>{
-       return( <div>
-         <h1 key={post.id}>{post.value}</h1>
-     
+        <div className='grid sm:grid-cols-3 gap-8  max auto'>
+            {data &&
+        data.map((post) => {
+            return (
+                <>
+                    <Card id={post.id} categories={post.categories} url={post.url} value={post.value} icon={post.icon_url}></Card>
+                  
+                </>
+            );
+        })}
+            
         </div>
-       )
-
-      })}
-    </div>
-  )
-
-  
- 
+    );
 };
 
-Page.displayName = "HomePage";
+Page.displayName = 'HomePage';
 
 export default Page;
-
-
-
-
 
 // A function to get the SWR key of each page,
 // its return value will be accepted by `fetcher`.
 // If `null` is returned, the request of that page won't start.
 /*
+
+
+  {data &&
+        data.map((post) => {
+            return (
+              
+                <div key={Math.random()}>
+                    <h1>{post.value}</h1>
+                </div>
+            );
+        })}
+
+
+
+
+
 const Page: NextPage = (_) => {
 
   
