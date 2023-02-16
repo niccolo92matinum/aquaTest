@@ -1,64 +1,91 @@
-import { NextPage } from 'next';
+import { NextPage } from "next";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Card from '../components/Card';
+import Card from "../components/Card";
+import Nav from "../components/Nav";
 
 const Page: NextPage = (_) => {
-    const [data, setData] = useState([]);
-    const [scroll, setScroll] = useState(0);
+  const [data, setData] = useState([]);
+  const [scroll, setScroll] = useState(0);
+  const [searchPost, setSearchPost] = useState("");
 
-    let totalPages;
+  const handleInput = (e) => {
+    setSearchPost(e.target.value);
+  };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch(`api/jokes?page=${scroll}`);
-                const data = await res.json();
+  console.log(data, "searcg");
+  let totalPages;
 
-                totalPages = data.totalPages;
-                setData((pre) => [...pre, ...data.data]);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [scroll]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`api/jokes?page=${scroll}`);
+        const data = await res.json();
 
-    useEffect(() => {
-        const handleScroll = (e) => {
-         
-            const scrollHeight = e.target.documentElement.scrollHeight;
-            const currentHeight =
+        totalPages = data.totalPages;
+        setData((pre) => [...pre, ...data.data]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [scroll]);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      const scrollHeight = e.target.documentElement.scrollHeight;
+      const currentHeight =
         e.target.documentElement.scrollTop + window.innerHeight;
 
-            if (currentHeight + 1 >= scrollHeight) {
-                scroll < totalPages ? setScroll(scroll + 1) : setScroll(0);
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
+      if (currentHeight + 1 >= scrollHeight) {
+        scroll < totalPages ? setScroll(scroll + 1) : setScroll(0);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
 
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [scroll]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scroll]);
 
-    return (
-     
-        <div className='grid sm:grid-cols-3 gap-8  max auto'>
-            {data &&
-        data.map((post) => {
-            return (
+  return (
+    <>
+      <Nav handleInput={handleInput}></Nav>
+
+      <div className="grid sm:grid-cols-3 gap-8  max auto relative">
+        {data &&
+          data
+            .filter((val) => {
+              if (searchPost === "") {
+                return val;
+              } else if (
+                val.value.toLowerCase().includes(searchPost.toLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .map((post) => {
+              return (
                 <>
-                    <Card id={post.id} categories={post.categories} url={post.url} value={post.value} icon={post.icon_url}></Card>
-                  
-                </>
-            );
-        })}
+               
+                <Card
+                 
+                   id={post.id}
+                   categories={post.categories}
+                   url={post.url}
+                   value={post.value}
+                   icon={post.icon_url}
+                 ></Card>
             
-        </div>
-    );
+                 
+                </>
+              );
+            })}
+      </div>
+    </>
+  );
 };
 
-Page.displayName = 'HomePage';
+Page.displayName = "HomePage";
 
 export default Page;
 

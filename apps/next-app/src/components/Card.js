@@ -3,7 +3,10 @@
 function Card({id, categories, url, value}){
 
 
+
     const sliceValue = value.slice(0, 60) + '...';
+
+
 
     return (
         <>
@@ -25,11 +28,13 @@ function Card({id, categories, url, value}){
                     <div className="px-6 pt-4 pb-2">
                         {
                           
-                            categories.map((category) =>{
-
+                            (categories).map((category) =>{
+                                
+                                
                                 return(
+                                   
                                     <div key={Math.random()}>
-                                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{category}</span>
+                                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{category||'category'}</span>
                                     </div>
                                 );
                             })
