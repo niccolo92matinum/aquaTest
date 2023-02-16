@@ -19,3 +19,4 @@ export const searchJokes = (query: string) => {
     AxiosError.from
   );
 };
+

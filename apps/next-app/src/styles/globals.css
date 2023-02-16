@@ -1,15 +1,8 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  width: 100vw;
-  height: 100vh;
 
-  padding: 35px;
-}
-
-.title {
-  font-weight: bold;
-  text-align: center;
+#mainDiv{
+height: 300px;
 }
