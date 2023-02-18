@@ -9,6 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    //"noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -26,7 +27,7 @@
       "@aquacloud/*": [
         "./src/internal/*"
       ]
-    }
+    },
   },
   "include": [
     "next-env.d.ts",

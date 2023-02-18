@@ -1,9 +1,9 @@
 
 
-function Card({id, categories, url, value}){
+function Card({categories, url, value}){
 
 
-// slice text of post is too long 
+    // slice text of post is too long 
     const sliceValue = value.slice(0, 60) + '...';
 
 
