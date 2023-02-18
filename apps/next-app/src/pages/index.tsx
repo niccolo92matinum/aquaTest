@@ -49,37 +49,39 @@ const Page: NextPage = (_) => {
 
   return (
     <>
-      <Nav handleInput={handleInput}></Nav>
+      <div className="bg-white dark:bg-black">
+        <Nav handleInput={handleInput}></Nav>
+       
+       
 
-      <div className="grid sm:grid-cols-3 gap-8  max auto relative">
-        {data &&
-          data
-            .filter((val) => {
-              if (searchPost === "") {
-                return val;
-              } else if (
-                val.value.toLowerCase().includes(searchPost.toLowerCase())
-              ) {
-                return val;
-              }
-            })
-            .map((post) => {
-              return (
-                <>
-               
-                <Card
-                 
-                   id={post.id}
-                   categories={post.categories}
-                   url={post.url}
-                   value={post.value}
-                   icon={post.icon_url}
-                 ></Card>
-            
-                 
-                </>
-              );
-            })}
+        <div className="grid sm:grid-cols-3 gap-8  max auto relative ">
+          {data &&
+            data
+              .filter((val) => {
+                if (searchPost === "") {
+                  return val;
+                } else if (
+                  val.value.toLowerCase().includes(searchPost.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((post) => {
+                return (
+                  <>
+                    <Card
+                      id={post.id}
+                      categories={post.categories}
+                      url={post.url}
+                      value={post.value}
+                      icon={post.icon_url}
+                    ></Card>
+                  </>
+                );
+              })}
+        </div>
+
+                       
       </div>
     </>
   );
