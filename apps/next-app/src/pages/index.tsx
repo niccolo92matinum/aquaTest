@@ -10,38 +10,44 @@ const Page: NextPage = (_) => {
   const [scroll, setScroll] = useState(0);
   const [searchPost, setSearchPost] = useState("");
 
+  // get value from search input
   const handleInput = (e) => {
     setSearchPost(e.target.value);
   };
 
-  console.log(data, "searcg");
   let totalPages;
 
+  // use Effect in this case  is used only when default parameter(scroll) is updated
   useEffect(() => {
     const fetchData = async () => {
       try {
+        //fetch data from api/jokes with dynamic  parameter(scroll)
         const res = await fetch(`api/jokes?page=${scroll}`);
+        //convert value to JSON
         const data = await res.json();
 
         totalPages = data.totalPages;
+        // merge array , old data with new data
         setData((pre) => [...pre, ...data.data]);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [scroll]);
 
-  useEffect(() => {
     const handleScroll = (e) => {
+      // set scrollHeight equal to  height of an element's content
       const scrollHeight = e.target.documentElement.scrollHeight;
+      //set currentHeight equal to  pixels that an element's content is scrolled vertically + height of the window layout.
       const currentHeight =
         e.target.documentElement.scrollTop + window.innerHeight;
-
+      /* by this statement the scroll state has been update until scroll reaches vaule og toralPage 
+     then scroll state start again from zero*/
       if (currentHeight + 1 >= scrollHeight) {
         scroll < totalPages ? setScroll(scroll + 1) : setScroll(0);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -51,8 +57,6 @@ const Page: NextPage = (_) => {
     <>
       <div className="bg-white dark:bg-black">
         <Nav handleInput={handleInput}></Nav>
-       
-       
 
         <div className="grid sm:grid-cols-3 gap-8  max auto relative ">
           {data &&
@@ -68,7 +72,7 @@ const Page: NextPage = (_) => {
               })
               .map((post) => {
                 return (
-                  <>
+                  <div key={crypto.randomUUID()}>
                     <Card
                       id={post.id}
                       categories={post.categories}
@@ -76,12 +80,10 @@ const Page: NextPage = (_) => {
                       value={post.value}
                       icon={post.icon_url}
                     ></Card>
-                  </>
+                  </div>
                 );
               })}
         </div>
-
-                       
       </div>
     </>
   );
@@ -90,74 +92,3 @@ const Page: NextPage = (_) => {
 Page.displayName = "HomePage";
 
 export default Page;
-
-// A function to get the SWR key of each page,
-// its return value will be accepted by `fetcher`.
-// If `null` is returned, the request of that page won't start.
-/*
-
-
-  {data &&
-        data.map((post) => {
-            return (
-              
-                <div key={Math.random()}>
-                    <h1>{post.value}</h1>
-                </div>
-            );
-        })}
-
-
-
-
-
-const Page: NextPage = (_) => {
-
-  
-
-  const { data, size, setSize } = useSWRInfinite(getKey, fetcher)
-  console.log(data, size, 'fet')
-  if (!data) return 'loading'
-
-  // We can now calculate the number of all users
-  
-
-  return <div>
- 
-  {data.map((posts, index) => {
-
-    return (posts.data.map(post => {return (<p >{post.value}</p>)}))
-  })}
-  <button onClick={() => setSize(size + 1)}>Load More</button>
-</div>
- 
-};
-
-Page.displayName = "HomePage";
-
-export default Page;
-
-const fetcher = async() =>{
-  const response = await fetch('/api/jokes?page=2')
-  const data = await response.json()
- return data
-
-}
-
-
-
-const getKey = (pageIndex, previousPageData) => {
-  if (previousPageData && !previousPageData.length) return null // reached the end
- 
-  return `/api/jokes`                    // SWR key
-}
-
-
-
-// A function to get the SWR key of each page,
-// its return value will be accepted by `fetcher`.
-// If `null` is returned, the request of that page won't start.
-
-
-
-*/

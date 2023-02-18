@@ -3,14 +3,14 @@
 function Card({id, categories, url, value}){
 
 
-
+// slice text of post is too long 
     const sliceValue = value.slice(0, 60) + '...';
 
 
 
     return (
         <>
-            <div  key={Math.random()} className="p-10  ">  
+            <div   className="p-10  ">  
 
                 <div className="max-w-sm rounded overflow-hidden shadow-lg dark:border-white border-4">
                     <img className="w-full" src={'/chuck.jpg'} alt="chuck"></img>
@@ -33,7 +33,7 @@ function Card({id, categories, url, value}){
                                 
                                 return(
                                    
-                                    <div key={Math.random()}>
+                                    <div key={crypto.randomUUID()}>
                                         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{category||'category'}</span>
                                     </div>
                                 );
