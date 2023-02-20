@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "cypress open"
   },
   "dependencies": {
     "@aquacloud/internal": "workspace:*",
@@ -24,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.6.0",
     "eslint": "8.34.0",
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.21",

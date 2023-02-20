@@ -37,6 +37,9 @@
             "error",
             "always"
         ],
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react/label-has-associated-control":"off",
+        "@typescript-eslint/no-var-requires": "error"
+
     }
 }

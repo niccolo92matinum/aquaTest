@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 
 import Card from '../components/Card';
@@ -58,13 +57,13 @@ function Page() {
 
     return (
         <>
-            <div className="bg-white dark:bg-black">
+            <div className="card bg-white dark:bg-black">
                 <Nav handleInput={handleInput}></Nav>
 
                 <div className="grid sm:grid-cols-3 gap-8  max auto relative ">
                     {data &&
             data
-                .filter((val) => {
+                .filter((val: any) => {
                     if (searchPost === '') {
                         return val;
                     } else if (
@@ -73,11 +72,10 @@ function Page() {
                         return val;
                     }
                 })
-                .map((post) => {
+                .map((post: any) => {
                     return (
-                        <div key={crypto.randomUUID()}>
+                        <div className="divCard" key={crypto.randomUUID()}>
                             <Card
-                                id={post.id}
                                 categories={post.categories}
                                 url={post.url}
                                 value={post.value}

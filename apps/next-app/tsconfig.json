@@ -9,6 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
     //"noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
