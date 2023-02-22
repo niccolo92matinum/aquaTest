@@ -6,10 +6,11 @@ import { paginate, searchJokes } from '@aquacloud/internal';
 
 const Handler: NextApiHandler = async (req, res) => {
     const {
-        query = 'money',
+        query = 'search',
         page = '1',
         pageSize = '15',
     } = req.query as Partial<Record<string, string>>;
+  
     const result = await searchJokes(query);
 
     if (!result.ok) {

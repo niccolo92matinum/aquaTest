@@ -28,6 +28,12 @@ function Page() {
                 totalPages = data.totalPages;
                 // merge array , old data with new data
                 setData((pre) => [...pre, ...data.data]);
+                // A. setData(value)
+                // B. setData(fn)-> fn:(previousValue)=>value
+                // const [counter, setCounter] = useState(0);
+                // A is wrong -> setData(count+1) -> 10
+                // [setData(10); setData(10)] => 10
+                // [setData(prev=> prev+1), setData(prev => prev+1)]-> 11
             } catch (error) {
                 console.log(error);
             }
